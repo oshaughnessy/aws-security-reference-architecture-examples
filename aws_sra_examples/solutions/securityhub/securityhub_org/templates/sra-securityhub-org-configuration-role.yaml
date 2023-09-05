@@ -149,6 +149,20 @@ Resources:
                   - !Sub arn:${AWS::Partition}:securityhub:*:${AWS::AccountId}:hub/default
                   - !Sub arn:${AWS::Partition}:securityhub:*:${AWS::AccountId}:/accounts
 
+              # https://aws.amazon.com/blogs/security/prepare-for-consolidated-controls-view-and-consolidated-control-findings-in-aws-security-hub/
+              - Sid: SecurityHubWithResourceConsolidatedControls
+                Effect: Allow
+                Action:
+                  - securityhub:BatchGetSecurityControls
+                  - securityhub:ListSecurityControlDefinitions
+                  - securityhub:ListStandardsControlAssociations
+                  - securityhub:BatchGetStandardsControlAssociations
+                  - securityhub:BatchUpdateStandardsControlAssociations
+                  - securityhub:BatchGetControlEvaluations
+                Resource:
+                  - !Sub arn:${AWS::Partition}:securityhub:*:${AWS::AccountId}:hub/default
+                  - !Sub arn:${AWS::Partition}:securityhub:*:${AWS::AccountId}:/accounts
+
               - Sid: SecurityHubFindingAggregator
                 Effect: Allow
                 Action:

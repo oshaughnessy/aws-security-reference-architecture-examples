@@ -263,7 +263,10 @@ def enable_account_securityhub(account_id: str, regions: list, configuration_rol
         securityhub_client: SecurityHubClient = account_session.client("securityhub", region, config=BOTO3_CONFIG)
 
         try:
-            enable_security_hub_response: Any = securityhub_client.enable_security_hub(EnableDefaultStandards=False)
+            enable_security_hub_response: Any = securityhub_client.enable_security_hub(
+                EnableDefaultStandards=False,
+                ControlFindingGenerator='SECURITY_CONTROL'
+            )
             api_call_details = {"API_Call": "securityhub:EnableSecurityHub", "API_Response": enable_security_hub_response}
             LOGGER.info(api_call_details)
             LOGGER.info(f"SecurityHub enabled in {account_id} {region}")
@@ -299,7 +302,8 @@ def configure_delegated_admin_securityhub(
         LOGGER.info(f"SecurityHub organization configuration updated in {region}")
 
         update_security_hub_configuration_response = securityhub_delegated_admin_region_client.update_security_hub_configuration(
-            AutoEnableControls=True
+            AutoEnableControls=True,
+            ControlFindingGenerator='SECURITY_CONTROL'
         )
         api_call_details = {"API_Call": "securityhub:UpdateSecurityHubConfiguration", "API_Response": update_security_hub_configuration_response}
         LOGGER.info(api_call_details)
