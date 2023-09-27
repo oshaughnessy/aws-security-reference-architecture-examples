@@ -407,6 +407,13 @@ def get_standard_dictionary(
                   "reason": "control should only be enabled in the region where global resources are recorded",
                   "condition": region != HOME_REGION
                 },
+                # https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-1
+                {
+                  "id": "S3.1",
+                  "status": "DISABLED",
+                  "reason": "control should only be enabled in the region where global resources are recorded",
+                  "condition": region != HOME_REGION
+                },
             ),
         },
         "pci": {
@@ -473,6 +480,13 @@ def get_standard_dictionary(
                 },
                 {
                   "id": "IAM.21",
+                  "status": "DISABLED",
+                  "reason": "control should only be enabled in the region where global resources are recorded",
+                  "condition": region != HOME_REGION
+                },
+                # https://docs.aws.amazon.com/securityhub/latest/userguide/s3-controls.html#s3-1
+                {
+                  "id": "S3.1",
                   "status": "DISABLED",
                   "reason": "control should only be enabled in the region where global resources are recorded",
                   "condition": region != HOME_REGION
